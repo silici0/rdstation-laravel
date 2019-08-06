@@ -1,0 +1,26 @@
+{
+    "name": "silici0/rdstation",
+    "description": "A Laravel Wrapper around RDStation API version 2.0",
+    "type": "laravel-package",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3@dev"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "silici0",
+            "email": "silici0@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "silici0\\rdstation\\RDStationServiceProvider"
+            ],
+            "aliases": {
+                "RDStation": "silici0\\rdstation\\RDStationFacade"
+            }
+        }
+    },
+}
