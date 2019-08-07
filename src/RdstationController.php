@@ -17,11 +17,6 @@ class RdstationController extends Controller
 
 	    	return view('rdstationview::success');
 	    } else {
-	    	// $d = array();
-	    	// $d['name'] = 'Rafael Cunha GERENTEWEB';
-	    	// $d['email']= 'rafael@gerenteweb.com.br';
-	    	// $d['personal_phone']='(11) 4022-1234';
-	    	// $rdstation->createOrUpdate($d);
 	    	$clientId = Config('rdstation.client_id');
 	    	return view('rdstationview::index', ['client_id' => $clientId]);
 	    }

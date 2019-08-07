@@ -9,9 +9,8 @@
     <body>
       Integração RDStation
       <a href="<?php 
-      //$str = str_replace(array('http://','https://'), '', 'https://siliconecenter.com.br');
       $str = URL::to('/').'/rdstation';
-      print 'https://api.rd.services/auth/dialog?client_id='.$client_id.'&redirect_url='.$str;//.URL::to('/');?>">INTEGRAR
+      print 'https://api.rd.services/auth/dialog?client_id='.$client_id.'&redirect_url='.$str;?>">INTEGRAR
       </a>
     </body>
 </html>
