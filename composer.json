@@ -17,7 +17,7 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "silici0\\RDStation": "src/"
+            "silici0\\RDStation\\": "src/"
         }
     },
     "extra": {
