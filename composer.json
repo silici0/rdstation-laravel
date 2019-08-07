@@ -19,10 +19,7 @@
         "laravel": {
             "providers": [
                 "silici0\\RDStation\\RDStationServiceProvider"
-            ],
-            "aliases": {
-                "RDStation": "silici0\\RDStation\\RDStationFacade"
-            }
+            ]
         }
     }
 }
