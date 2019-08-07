@@ -21,7 +21,7 @@
                 "silici0\\RDStation\\RDStationServiceProvider"
             ],
             "aliases": {
-                "RDStation": "silici0\\rdstation\\RDStationFacade"
+                "RDStation": "silici0\\RDStation\\RDStationFacade"
             }
         }
     }
