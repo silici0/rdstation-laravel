@@ -35,6 +35,6 @@ class RDStationServiceProvider extends ServiceProvider
 
     public function provides()
     {
-        return ['RDStation'];
+        return ['rdstation'];
     }
 }
