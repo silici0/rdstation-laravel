@@ -3,7 +3,9 @@
     "description": "A Laravel Wrapper around RDStation API version 2.0",
     "type": "laravel-package",
     "require": {
-        "guzzlehttp/guzzle": "^6.3@dev"
+        "guzzlehttp/guzzle": "^6.3@dev",
+        "illuminate/support": ">=5.* <6.0",
+        "php": ">=7.0",
     },
     "license": "MIT",
     "authors": [
