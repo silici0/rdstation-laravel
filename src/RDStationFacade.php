@@ -1,6 +1,6 @@
 <?php
 
-namespace silici0/RDStation;
+namespace silici0\RDStation;
 
 use Illuminate\Support\Facades\Facade;
 
