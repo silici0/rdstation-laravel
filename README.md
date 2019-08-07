@@ -5,7 +5,7 @@ This library provides an objected-oriented wrapper of the PHP classes to access 
 ## Installation
 
 ```
-composer require silici0/rdstation-laravel:dev-master
+composer require silici0/rdstation:dev-master
 ```
 
 ## Publish Conf File
