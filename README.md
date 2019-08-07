@@ -8,14 +8,27 @@ This library provides an objected-oriented wrapper of the PHP classes to access 
 composer require silici0/rdstation-laravel:dev-master
 ```
 
+## Publish Conf File
+
+```
+php artisan vendor:publish --provider="silici0\RDStation\RDStationServiceProvider"
+```
+
+## Migration
+
+Need to install rdstation database to store "code" and auth "key"
+
+```
+php artisan migrate
+```
+
 ## Configuration
 
-need create
-```
-{
-  
-}
-```
+Access https://appstore.rdstation.com/pt-BR/publisher to create a new APP, on the new APP use callback url yourdomain.com/rdstation, get your ClientID and ClientSecret key, put those on config/rdstation.php
+
+Now you can access yourdomain.com/rdstation, just access the link, give it permission, on the way back you should see a success message.
+
+And its ready to use.
 
 ## Usage example
 
