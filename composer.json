@@ -18,7 +18,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "silici0\\rdstation\\RDStationServiceProvider"
+                "silici0\\RDStation\\RDStationServiceProvider"
             ],
             "aliases": {
                 "RDStation": "silici0\\rdstation\\RDStationFacade"
