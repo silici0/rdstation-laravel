@@ -146,7 +146,7 @@ class RDStation
         }
     }
 
-    protected function returnError(GuzzleHttp\Exception\ClientException $e)
+    protected function returnError(\GuzzleHttp\Exception\ClientException $e)
     {
     	$response = $e->getResponse();
 	    $status = $response->getStatusCode();
