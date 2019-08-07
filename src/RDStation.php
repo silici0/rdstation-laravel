@@ -47,9 +47,14 @@ class RDStation
     	$body['client_id'] = Config('rdstation.client_id');;
 		$body['client_secret'] = Config('rdstation.client_secret');
 		$body['code'] = $this->code;
-		$res = $client->post('https://api.rd.services/auth/token', [ 
-			'body' => json_encode($body)
-		]);
+		try {
+		    $res = $client->post('https://api.rd.services/auth/token', [ 
+				'body' => json_encode($body)
+			]);
+		} catch (\GuzzleHttp\Exception\ClientException $e) {
+			$this->returnError($e);
+		}
+		
 
 		$code = $res->getStatusCode();
 		if ($code == '200') {
