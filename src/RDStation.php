@@ -153,8 +153,9 @@ class RDStation
 		}
     }
 
-    public function saveEvent($event_identifier, $email)
+    public function saveEvent($event_identifier, $data)
     {
+    	var_dump($event_identifier);
     	$this->guardAgainstAutentication();
     	$options = [
 		    'request.options' => [
@@ -172,7 +173,10 @@ class RDStation
 	    $body['event_family'] = "CDP";
 	    $body['payload'] = array();
 	    $body['payload']['conversion_identifier'] = $event_identifier;
-	    $body['payload']['email'] = $email;
+	    foreach ($data as $key => $value) {
+	    	$body['payload'][$key] = $value;
+	    }
+
 	    try {
 		    $res = $client->post("https://api.rd.services/platform/events", [ 
 				'body' => json_encode($body)

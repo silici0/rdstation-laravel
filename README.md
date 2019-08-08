@@ -35,10 +35,25 @@ And its ready to use.
 ```
 $rdstation = resolve('rdstation');
 
+//Create or Update Lead
 $d = array();
 $d['name'] = 'Fulano de tal';
 $d['email']= 'rafael@teste.com.br';
 $d['personal_phone']='(11) 4022-1234';
 
 $rdstation->createOrUpdate($d);
+
+// Create new event for the Lead
+
+$calltracking = Cookie::get('_rdtrk');
+if (!empty($calltracking)) 
+    $d['client_tracking_id']= $calltracking;
+$utm_source = Cookie::get('__trf.src');
+if (!empty($utm_source)) 
+    $d['traffic_source'] = $utm_source;
+else {
+	// GET UTM and save in $d array
+}
+
+$rdstation->saveEvent('CONVERSION TAG NAME', $d);
 ```
