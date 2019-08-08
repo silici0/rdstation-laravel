@@ -20,9 +20,9 @@ class RDStation
 		{
 			$this->code = $this->rdstationModel->code;
 			$this->token = $this->rdstationModel->token;
-			if ($this->rdstationModel->created_at->diffInHours() >= 22)
+			if ($this->rdstationModel->created_at->diffInHours() >= 20)
 			{
-				$this->generateToken();
+				$this->refreshToken();
 			}	
 		}
 	}
@@ -30,6 +30,49 @@ class RDStation
 	public function returnToken()
 	{
 		return $this->rdstationModel->token;
+	}
+
+	protected function refreshToken()
+	{
+		$options = [
+		    'request.options' => [
+		        'timeout'         => 10,
+		        'connect_timeout' => 5
+		    ]
+		];
+    	$client = new \GuzzleHttp\Client(['headers' => [
+	        'Content-Type' => 'application/json'
+	        ]
+	    ], $options);
+    	$body['client_id'] = Config('rdstation.client_id');;
+		$body['client_secret'] = Config('rdstation.client_secret');
+		$body['refresh_token'] = $this->rdstationModel->refresh_token;
+		try {
+		    $res = $client->post('https://api.rd.services/auth/token', [ 
+				'body' => json_encode($body)
+			]);
+		} catch (\GuzzleHttp\Exception\ClientException $e) {
+			$this->returnError($e);
+		}
+		
+
+		$code = $res->getStatusCode();
+		if ($code == '200') {
+			$ret = json_decode($res->getBody()->getContents());
+			$data = array();
+	    	$data['client_id'] = Config('rdstation.client_id');
+	    	$data['client_secret'] = Config('rdstation.client_secret');
+	    	$data['code'] = $this->code;
+
+	    	$data['token'] = $ret->access_token;
+	    	$data['refresh_token'] = $ret->refresh_token;
+	    	if ($this->rdstationModel == null) 
+	    	{
+	    		$this->rdstationModel = ModelRDStation::create($data);
+	    	} else {
+	    		$this->rdstationModel->update($data);
+	    	}
+		}
 	}
 
 	protected function generateToken()
