@@ -155,7 +155,6 @@ class RDStation
 
     public function saveEvent($event_identifier, $data)
     {
-    	var_dump($event_identifier);
     	$this->guardAgainstAutentication();
     	$options = [
 		    'request.options' => [
@@ -189,6 +188,32 @@ class RDStation
 			return json_decode($res->getBody()->getContents());
 		}
 
+    }
+
+    public function getFields()
+    {
+		$this->guardAgainstAutentication();
+    	$options = [
+		    'request.options' => [
+		        'timeout'         => 10,
+		        'connect_timeout' => 5
+		    ]
+		];
+    	$client = new \GuzzleHttp\Client(['headers' => [
+    		'Authorization' => 'Bearer ' . $this->token,
+	        'Content-Type' => 'application/json'
+	        ]
+	    ], $options);
+	    
+	    try {
+		    $res = $client->post("https://api.rd.services/platform/contacts/fields");
+		} catch (\GuzzleHttp\Exception\ClientException $e) {
+			$this->returnError($e);
+		}
+	    $code = $res->getStatusCode();
+		if ($code == '200') {
+			return json_decode($res->getBody()->getContents());
+		}    	
     }
 
     protected function guardAgainstAutentication()
