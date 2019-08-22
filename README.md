@@ -57,3 +57,11 @@ else {
 
 $rdstation->saveEvent('CONVERSION TAG NAME', $d);
 ```
+
+## Custom Fields
+
+To send custom fields you need to use api_identifier fields, use getFields() method to check api_identifier of the fields
+
+```
+$rdstation->getFields();
+```
