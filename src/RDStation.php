@@ -206,7 +206,7 @@ class RDStation
 	    ], $options);
 	    
 	    try {
-		    $res = $client->post("https://api.rd.services/platform/contacts/fields");
+		    $res = $client->get("https://api.rd.services/platform/contacts/fields");
 		} catch (\GuzzleHttp\Exception\ClientException $e) {
 			$this->returnError($e);
 		}
