@@ -113,6 +113,7 @@ class RDStation
 	    	{
 	    		$this->rdstationModel = ModelRDStation::create($data);
 	    	} else {
+	    		$this->token = $ret->access_token;
 	    		$this->rdstationModel->update($data);
 	    	}
 		}
