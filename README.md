@@ -38,7 +38,7 @@ $rdstation = resolve('rdstation');
 //Create or Update Lead
 $d = array();
 $d['name'] = 'Fulano de tal';
-$d['email']= 'rafael@teste.com.br';
+$d['email']= 'rafael@teste.com.br'; //Lead email Key
 $d['personal_phone']='(11) 4022-1234';
 
 $rdstation->createOrUpdate($d);
@@ -56,6 +56,15 @@ else {
 }
 
 $rdstation->saveEvent('CONVERSION TAG NAME', $d);
+
+// Update Funnel 
+$d = array();
+$d['email'] = 'rafael@teste.com.br'; //Lead email Key
+$d['lifecycle_stage	'] = 'Lead';
+$d['opportunity'] = false;
+$d['contact_owner_email'] = 'rafael@user.com'; // Must be a rdstation user
+
+$rdstation->updateFunnel($data);
 ```
 
 ## Custom Fields

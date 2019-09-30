@@ -125,6 +125,35 @@ class RDStation
 		$this->generateToken();
 	}
 
+	public function updateFunnel($data)
+	{
+		$this->guardAgainstAutentication();
+    	$options = [
+		    'request.options' => [
+		        'timeout'         => 10,
+		        'connect_timeout' => 5
+		    ]
+		];
+    	$client = new \GuzzleHttp\Client(['headers' => [
+    		'Authorization' => 'Bearer ' . $this->token,
+	        'Content-Type' => 'application/json'
+	        ]
+	    ], $options);
+	    $url = str_replace("{value}", $data['email'], "https://api.rd.services/platform/contacts/email:{value}/funnels/default");
+		unset($data['email']);
+		try {
+		    $res = $client->put($url, [ 
+				'body' => json_encode($data)
+			]);
+		} catch (\GuzzleHttp\Exception\ClientException $e) {
+			$this->returnError($e);
+		}
+		$code = $res->getStatusCode();
+		if ($code == '200') {
+			return json_decode($res->getBody()->getContents());
+		}
+	}
+
 	public function createOrUpdate($data)
     {
     	$this->guardAgainstAutentication();
